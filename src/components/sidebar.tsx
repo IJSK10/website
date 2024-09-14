@@ -5,14 +5,14 @@ const Sidebar = () => {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
+    const sections = Array.from(document.querySelectorAll("section[id]")) as HTMLElement[];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100; // Adjust this value as needed
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(section.getAttribute("id"));
+          setActiveSection(section.getAttribute("id")!);
         }
       });
     };
@@ -30,7 +30,7 @@ const Sidebar = () => {
 
     if (targetElement) {
       const navbarHeight = document.querySelector("nav")?.offsetHeight || 0;
-      const targetPosition = targetElement.offsetTop - navbarHeight - 50;
+      const targetPosition = targetElement.offsetTop - navbarHeight;
 
       window.scrollTo({
         top: targetPosition,
