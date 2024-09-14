@@ -23,9 +23,9 @@ const Sidebar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScroll = (event) => {
+  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
-    const targetId = event.currentTarget.getAttribute("href").substring(1);
+    const targetId = event.currentTarget.getAttribute("href")!.substring(1);
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
